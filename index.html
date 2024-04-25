@@ -24,36 +24,44 @@
         .canvas-container {
             margin-top: 20px;
         }
-        /* Ensure the canvas is centered and the surrounding elements do not introduce white stripes */
-        .container {
-            text-align: center; /* Center-align the canvas within the container */
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="row mt-3">
-            <p></p>
+        <h1>Helységnév zászló készítő</h1>
 
-            <div class="col text-center">
-                <input type="text" id="textInput" class="form-control" placeholder="Helységnév" value="" autofocus>
+        <p>A kormánypropaganda szerint a vidékiek elenyésző számban vesznek részt a tüntetésekben. Mutassuk meg, hogy ez nem igaz!</p>
+
+        <p>Ezzel a weboldallal pillanatok alatt, olcsón elkészítheted a településnevedet tartalmazó zászlódat.</p>
+
+        <p>1. Írd be a településed névét:</p>
+
+        <div class="row mt-3">
+            <div class="col">
+                <input type="text" id="textInput" class="form-control" placeholder="Településnév" value="" autofocus>
             </div>
         </div>
 
-        <div class="row canvas-container">
+        <div class="row canvas-container mb-3">
             <div class="col text-center">
                 <canvas id="flagCanvas" width="4950" height="3510"></canvas>
             </div>
         </div>
 
-        <div class="row mt-3">
-            <div class="col text-center">
-                <button id="downloadBtn" class="btn btn-primary">Kep letoltese</button>
-            </div>
-        </div>
+        <p>2. <a href="#" id="downloadBtn">Töltsd le</a> az elkészült képet, és másold át egy pendrive-ra. Ha nincs pendrive-od, akkor is folytasd.</p>
 
-        <a href="https://www.google.com/maps/search/fénymásolás">Google Maps fenymasolo szalonok</a>
+        <p>3. Menj el egy <a href="https://www.google.com/maps/search/fénymásolás" target="_blank">közeli fénymásoló szalonba</a> és add nekik a pendrive-ot. Ha nincs pendrive-od, add meg nekik a <b>t.ly/hzk</b> webcímet, ami erre az oldalra irányít, ahol letölthetik a képet.</p>
 
+        <h2>Fénymásoló szalon instrukciók</h2>
+
+        <p>1. Nyomtassák ki a képet lehetőleg minél vastagabb, legalább 300 g/m²-es A3-as papírra 2 példányban, példányonként egy oldalra.</p>
+        <p>2. Vágják le a lapok szélein levő fehér sávot.</p>
+        <p>3. Laminálják mindkét oldalt.</p>
+        <p>4. Fogják össze a lapokat tartalommal kifelé, úgy, hogy a településnévek azonos irányban álljanak, és lyukasszák ki a 4 kis lukat, amelyek felül és alul középen vannak.</p>
+
+        <h2>A zászló összerakása</h2>
+
+        <p></p>
     </div>
 
 
