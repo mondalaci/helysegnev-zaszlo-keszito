@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Page with Dynamic Canvas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        canvas {
+            /* Set the display size of the canvas in the browser */
+            width: 100%; /* 100% of the container width */
+            max-height: 80vh; /* maximum height to a reasonable value */
+            /* Remove object-fit as it's not commonly used with canvas */
+            display: block; /* Remove extra space below the canvas */
+            margin: auto; /* Center the canvas in the container if it's smaller than the container width */
+
+            /* The border is applied on the outside edge of the canvas */
+            border: solid 1px #000000; /* Black border around the canvas */
+
+            /* This ensures the canvas background is white, but the actual drawn content should cover this */
+            background-color: #FFFFFF;
+        }
+        .canvas-container {
+            margin-top: 20px;
+        }
+        /* Ensure the canvas is centered and the surrounding elements do not introduce white stripes */
+        .container {
+            text-align: center; /* Center-align the canvas within the container */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col text-center">
+                <input type="text" id="textInput" class="form-control" placeholder="Enter text for the white stripe..." value="Ballószög" autofocus>
+            </div>
+        </div>
+
+        <div class="row canvas-container">
+            <div class="col text-center">
+                <canvas id="flagCanvas" width="4950" height="3510"></canvas>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-center">
+                <button id="downloadBtn" class="btn btn-primary">Kep letoltese</button>
+            </div>
+        </div>
+
+        <a href="https://www.google.com/maps/search/fénymásolás">Google Maps fenymasolo szalonok</a>
+
+    </div>
+
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        var canvas = document.getElementById('flagCanvas');
+        var ctx = canvas.getContext('2d');
+        var input = document.getElementById('textInput');
+
+        function drawFlag() {
+            ctx.fillStyle = '#D52B1E';
+            ctx.fillRect(0, 0, canvas.width, canvas.height / 3);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, canvas.height / 3, canvas.width, canvas.height / 3);
+            drawText(input.value, canvas.height / 2, '#000000');
+
+            ctx.fillStyle = '#008751';
+            ctx.fillRect(0, 2 * canvas.height / 3, canvas.width, canvas.height / 3);
+
+            placeReferenceDots();
+        }
+
+        function placeReferenceDots() {
+            var midX = canvas.width / 2;
+            var offset = 118; // 1 cm offset in pixels
+            var dotRadius = 11.81; // 2 mm radius in pixels
+
+            ctx.fillStyle = '#000000';
+
+            function drawDot(centerX, centerY) {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, dotRadius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            var edgeOffset = 118; // 1 cm from the edges in pixels
+            drawDot(midX - offset, edgeOffset);
+            drawDot(midX - offset, canvas.height - edgeOffset);
+            drawDot(midX + offset, edgeOffset);
+            drawDot(midX + offset, canvas.height - edgeOffset);
+        }
+
+        function fitText(text, maxWidth) {
+            var fontSize = 800;
+            ctx.font = fontSize + 'px Arial';
+            var textWidth = ctx.measureText(text).width;
+            while (textWidth > maxWidth && fontSize > 0) {
+                fontSize -= 10;
+                ctx.font = fontSize + 'px Arial';
+                textWidth = ctx.measureText(text).width;
+            }
+            return fontSize;
+        }
+
+        function drawText(text, verticalPosition, textColor) {
+            var maxWidth = canvas.width * 0.9;
+            var fontSize = fitText(text, maxWidth);
+            ctx.fillStyle = textColor;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.font = fontSize + 'px Arial';
+            ctx.fillText(text, canvas.width / 2, verticalPosition);
+        }
+
+        function updateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawFlag();
+        }
+
+        input.addEventListener('input', updateCanvas);
+        updateCanvas();
+
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            var image = canvas.toDataURL('image/png');
+            var link = document.createElement('a');
+            link.download = 'HungarianFlag.png';
+            link.href = image;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>
