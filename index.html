@@ -52,7 +52,7 @@
 
         <p>2. <a href="#" id="downloadBtn">Töltsd le</a> az elkészült képet, és másold át egy pendrive-ra. Ha nincs pendrive-od, akkor is folytasd.</p>
 
-        <p>3. Menj el egy <a href="https://www.google.com/maps/search/fénymásolás" target="_blank">közeli fénymásoló szalonba</a> és add nekik a pendrive-ot. Ha nincs pendrive-od, add meg nekik a <b>t.ly/hzk</b> webcímet, ami erre az oldalra irányít, ahol letölthetik a képet.</p>
+        <p>3. Menj el egy <a href="https://www.google.com/maps/search/fénymásolás" target="_blank">közeli fénymásoló szalonba</a>, és add nekik a pendrive-ot. Ha nincs pendrive-od, add meg nekik a <b>t.ly/hzk</b> webcímet, ami erre az oldalra irányít, ahol letölthetik a képet.</p>
 
         <h2>Fénymásoló szalon instrukciók</h2>
 
@@ -65,11 +65,11 @@
 
         <p>1. Szerezz valahonnan, például barkácsboltból, egy körülbelül 3 cm átmérőjű és 1 méter hosszú rudat és gyorskötözőket.</p>
         <p>2. Két gyorskötőző segítségével rögzítsd a lapokat a lyukakon keresztül szendvicsszerűen a rúdhoz.</p>
-        <p>3. Megcsináltad! Irány a tüntétés!</p>
+        <p>3. Megcsináltad! Irány a tüntetés!</p>
 
         <img src="flag.jpg" class="img-fluid mb-3">
 
-        <p>Szívesen fogadom a hibajelentéseket és javaslatokat a laci kukac monda pont hu email címen.</p>
+        <p>Szívesen fogadom a hibajelentéseket és javaslatokat a <a href="mailto:laci@monda.hu">laci@monda.hu</a> email címre.</p>
     </div>
 
 
@@ -149,7 +149,7 @@
         document.getElementById('downloadBtn').addEventListener('click', function() {
             var image = canvas.toDataURL('image/png');
             var link = document.createElement('a');
-            link.download = 'HungarianFlag.png';
+            link.download = 'zászló.png';
             link.href = image;
             document.body.appendChild(link);
             link.click();
